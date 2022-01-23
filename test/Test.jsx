@@ -222,16 +222,16 @@ export default function Test() {
             <Calendar
               {...commonProps}
               activeStartDate={activeStartDate}
+              formatShortWeekday={(locale, date) => {
+                return String(date).substring(0, 2)
+              }}
+              extraHtml={<div>
+                hamaadh
+              </div>}
               value={value}
               view={view}
             />
             <p>Uncontrolled:</p>
-            <Calendar
-              {...commonProps}
-              defaultActiveStartDate={activeStartDate}
-              defaultValue={value}
-              defaultView={view}
-            />
           </form>
           {renderDebugInfo()}
         </main>

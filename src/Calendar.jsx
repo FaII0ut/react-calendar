@@ -623,6 +623,7 @@ export default class Calendar extends Component {
       inputRef,
       selectRange,
       showDoubleView,
+      extraHtml,
     } = this.props;
     const { onMouseLeave, value } = this;
     const valueArray = [].concat(value);
@@ -638,6 +639,8 @@ export default class Calendar extends Component {
         ref={inputRef}
       >
         {this.renderNavigation()}
+        {extraHtml}
+        
         <div
           className={`${baseClassName}__viewContainer`}
           onBlur={selectRange ? onMouseLeave : null}
@@ -657,6 +660,7 @@ Calendar.defaultProps = {
   minDate: defaultMinDate,
   minDetail: 'century',
   returnValue: 'start',
+  extraHtml: () => null,
   showNavigation: true,
   showNeighboringMonth: true,
 };

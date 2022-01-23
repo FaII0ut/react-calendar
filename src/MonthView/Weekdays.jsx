@@ -41,9 +41,9 @@ export default function Weekdays(props) {
         key={weekday}
         className={`${className}__weekday`}
       >
-        <abbr aria-label={abbr} title={abbr}>
+        <p aria-label={abbr} title={abbr}>
           {formatShortWeekday(locale, weekdayDate).replace('.', '')}
-        </abbr>
+        </p>
       </div>,
     );
   }

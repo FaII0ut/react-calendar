@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { getUserLocale } from 'get-user-locale';
+import React from "react";
+import PropTypes from "prop-types";
+import { getUserLocale } from "get-user-locale";
 
 import {
   getCenturyLabel,
@@ -11,14 +11,14 @@ import {
   getBeginPrevious2,
   getEndPrevious,
   getEndPrevious2,
-} from '../shared/dates';
+} from "../shared/dates";
 import {
   formatMonthYear as defaultFormatMonthYear,
   formatYear as defaultFormatYear,
-} from '../shared/dateFormatter';
-import { isView, isViews } from '../shared/propTypes';
+} from "../shared/dateFormatter";
+import { isView, isViews } from "../shared/propTypes";
 
-const className = 'react-calendar__navigation';
+const className = "react-calendar__navigation";
 
 export default function Navigation({
   activeStartDate,
@@ -28,32 +28,31 @@ export default function Navigation({
   locale,
   maxDate,
   minDate,
-  navigationAriaLabel = '',
+  navigationAriaLabel = "",
   navigationAriaLive,
   navigationLabel,
-  next2AriaLabel = '',
-  next2Label = '»',
-  nextAriaLabel = '',
-  nextLabel = '›',
-  prev2AriaLabel = '',
-  prev2Label = '«',
-  prevAriaLabel = '',
-  prevLabel = '‹',
+  next2AriaLabel = "",
+  next2Label = "»",
+  nextAriaLabel = "",
+  nextLabel = "›",
+  prev2AriaLabel = "",
+  prev2Label = "«",
+  prevAriaLabel = "",
+  prevLabel = "‹",
   setActiveStartDate,
   showDoubleView,
   view,
   views,
 }) {
   const drillUpAvailable = views.indexOf(view) > 0;
-  const shouldShowPrevNext2Buttons = view !== 'century';
+  const shouldShowPrevNext2Buttons = view !== "century";
 
   const previousActiveStartDate = getBeginPrevious(view, activeStartDate);
-  const previousActiveStartDate2 = (
-    shouldShowPrevNext2Buttons
-    && getBeginPrevious2(view, activeStartDate)
-  );
+  const previousActiveStartDate2 =
+    shouldShowPrevNext2Buttons && getBeginPrevious2(view, activeStartDate);
   const nextActiveStartDate = getBeginNext(view, activeStartDate);
-  const nextActiveStartDate2 = shouldShowPrevNext2Buttons && getBeginNext2(view, activeStartDate);
+  const nextActiveStartDate2 =
+    shouldShowPrevNext2Buttons && getBeginNext2(view, activeStartDate);
 
   const prevButtonDisabled = (() => {
     if (previousActiveStartDate.getFullYear() < 0) {
@@ -63,64 +62,61 @@ export default function Navigation({
     return minDate && minDate >= previousActiveEndDate;
   })();
 
-  const prev2ButtonDisabled = shouldShowPrevNext2Buttons && (() => {
-    if (previousActiveStartDate2.getFullYear() < 0) {
-      return true;
-    }
-    const previousActiveEndDate = getEndPrevious2(view, activeStartDate);
-    return minDate && minDate >= previousActiveEndDate;
-  })();
+  const prev2ButtonDisabled =
+    shouldShowPrevNext2Buttons &&
+    (() => {
+      if (previousActiveStartDate2.getFullYear() < 0) {
+        return true;
+      }
+      const previousActiveEndDate = getEndPrevious2(view, activeStartDate);
+      return minDate && minDate >= previousActiveEndDate;
+    })();
 
   const nextButtonDisabled = maxDate && maxDate < nextActiveStartDate;
 
-  const next2ButtonDisabled = (
-    shouldShowPrevNext2Buttons
-    && maxDate
-    && maxDate < nextActiveStartDate2
-  );
+  const next2ButtonDisabled =
+    shouldShowPrevNext2Buttons && maxDate && maxDate < nextActiveStartDate2;
 
   function onClickPrevious() {
-    setActiveStartDate(previousActiveStartDate, 'prev');
+    setActiveStartDate(previousActiveStartDate, "prev");
   }
 
   function onClickPrevious2() {
-    setActiveStartDate(previousActiveStartDate2, 'prev2');
+    setActiveStartDate(previousActiveStartDate2, "prev2");
   }
 
   function onClickNext() {
-    setActiveStartDate(nextActiveStartDate, 'next');
+    setActiveStartDate(nextActiveStartDate, "next");
   }
 
   function onClickNext2() {
-    setActiveStartDate(nextActiveStartDate2, 'next2');
+    setActiveStartDate(nextActiveStartDate2, "next2");
   }
 
   function renderLabel(date) {
     const label = (() => {
       switch (view) {
-        case 'century':
+        case "century":
           return getCenturyLabel(locale, formatYear, date);
-        case 'decade':
+        case "decade":
           return getDecadeLabel(locale, formatYear, date);
-        case 'year':
+        case "year":
           return formatYear(locale, date);
-        case 'month':
+        case "month":
           return formatMonthYear(locale, date);
         default:
           throw new Error(`Invalid view: ${view}.`);
       }
     })();
 
-    return (
-      navigationLabel
-        ? navigationLabel({
+    return navigationLabel
+      ? navigationLabel({
           date,
           label,
           locale: locale || getUserLocale(),
           view,
         })
-        : label
-    );
+      : label;
   }
 
   function renderButton() {
@@ -135,19 +131,19 @@ export default function Navigation({
         style={{ flexGrow: 1 }}
         type="button"
       >
-        <span className={`${labelClassName}__labelText ${labelClassName}__labelText--from`}>
+        <p
+          className={`${labelClassName}__labelText ${labelClassName}__labelText--from`}
+        >
           {renderLabel(activeStartDate)}
-        </span>
+        </p>
         {showDoubleView && (
           <>
-            <span className={`${labelClassName}__divider`}>
-              {' '}
-              –
-              {' '}
-            </span>
-            <span className={`${labelClassName}__labelText ${labelClassName}__labelText--to`}>
+            <p className={`${labelClassName}__divider`}> – </p>
+            <p
+              className={`${labelClassName}__labelText ${labelClassName}__labelText--to`}
+            >
               {renderLabel(nextActiveStartDate)}
-            </span>
+            </p>
           </>
         )}
       </button>
@@ -156,7 +152,7 @@ export default function Navigation({
 
   return (
     <div className={className}>
-      {prev2Label !== null && shouldShowPrevNext2Buttons && (
+      {/* {prev2Label !== null && shouldShowPrevNext2Buttons && (
         <button
           aria-label={prev2AriaLabel}
           className={`${className}__arrow ${className}__prev2-button`}
@@ -166,7 +162,7 @@ export default function Navigation({
         >
           {prev2Label}
         </button>
-      )}
+      )} */}
       {prevLabel !== null && (
         <button
           aria-label={prevAriaLabel}
@@ -175,7 +171,21 @@ export default function Navigation({
           onClick={onClickPrevious}
           type="button"
         >
-          {prevLabel}
+          <svg
+            width="8"
+            height="12"
+            viewBox="0 0 8 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M6.5 11L1.5 6L6.5 1"
+              stroke="#6B7280"
+              stroke-width="1.67"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </button>
       )}
       {renderButton()}
@@ -187,10 +197,24 @@ export default function Navigation({
           onClick={onClickNext}
           type="button"
         >
-          {nextLabel}
+          <svg
+            width="8"
+            height="12"
+            viewBox="0 0 8 12"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.5 11L6.5 6L1.5 1"
+              stroke="#6B7280"
+              stroke-width="1.67"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
         </button>
       )}
-      {next2Label !== null && shouldShowPrevNext2Buttons && (
+      {/* {next2Label !== null && shouldShowPrevNext2Buttons && (
         <button
           aria-label={next2AriaLabel}
           className={`${className}__arrow ${className}__next2-button`}
@@ -200,7 +224,7 @@ export default function Navigation({
         >
           {next2Label}
         </button>
-      )}
+      )} */}
     </div>
   );
 }

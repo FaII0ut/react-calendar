@@ -90,7 +90,7 @@ export default class Tile extends Component {
             </abbr>
           )
           : children}
-        {tileContent}
+        {/* {tileContent} */}
       </button>
     );
   }

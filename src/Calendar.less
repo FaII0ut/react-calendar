@@ -1,26 +1,29 @@
 .react-calendar {
-  width: 350px;
+  width: 328px;
   max-width: 100%;
   background: white;
-  border: 1px solid rgb(160, 160, 150);
+  // border: 1px solid rgb(192, 192, 192);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.125em;
-
+  padding: 0em 1.5em;
   &--doubleView {
     width: 700px;
 
     .react-calendar__viewContainer {
       display: flex;
-      margin: -.5em;
+      margin: -0.5em;
 
       > * {
         width: 50%;
-        margin: .5em;
+        margin: 0.5em;
       }
     }
   }
 
-  &, & *, & *:before, & *:after {
+  &,
+  & *,
+  & *:before,
+  & *:after {
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -41,33 +44,46 @@
   &__navigation {
     display: flex;
     height: 44px;
-    margin-bottom: 1em;
+    margin: 1.5em 0em;
 
     button {
       min-width: 44px;
       background: none;
 
       &:disabled {
-        background-color: rgb(240, 240, 240);
+        // background-color: rgb(240, 240, 240);
+        color: rgb(240, 240, 240); 
+        opacity: 0.4;
+
       }
 
       &:enabled {
-        &:hover, &:focus {
-          background-color: rgb(230, 230, 230);
+        &:hover,
+        &:focus {
+          // background-color: rgb(230, 230, 230);
+        color: rgba(226, 20, 12, 1);
+
         }
       }
     }
   }
 
   &__month-view {
+   
+
     &__weekdays {
       text-align: center;
-      text-transform: uppercase;
+      text-transform: capitalize;
       font-weight: bold;
-      font-size: .75em;
+      font-size: 14px;
+      color: rgba(55, 65, 81, 1);
 
       &__weekday {
-        padding: .5em;
+        padding: 0.5em;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
     }
 
@@ -76,20 +92,39 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: .75em;
+        font-size: 0.75em;
         font-weight: bold;
       }
     }
-
+    // react-calendar__year-view__months__month
+   
     &__days {
       &__day {
+        border-radius: 100%;
         &--weekend {
           color: rgb(209, 0, 0);
         }
 
         &--neighboringMonth {
-          color: rgb(117, 117, 117)
+          color: rgb(117, 117, 117);
         }
+      }
+    }
+  }
+  // react-calendar__year-view__months__month
+  // react-calendar__decade-view__years__year
+  &__year-view{
+    &__months {
+      &__month {
+        border-radius: 4px;
+      }
+    }
+  }
+
+  &__decade-view{
+    &__years {
+      &__year {
+        border-radius: 4px;
       }
     }
   }
@@ -98,8 +133,9 @@
   &__decade-view,
   &__century-view {
     .react-calendar__tile {
-      padding: 2em .5em;
+      padding: 2em 0.5em;
     }
+    
   }
 
   &__tile {
@@ -108,47 +144,60 @@
     background: none;
     text-align: center;
     line-height: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
 
-    &:disabled {
-      background-color: rgb(240, 240, 240);
-    }
+    // &:disabled {
+    //   background-color: rgb(240, 240, 240);
+    // }
 
     &:enabled {
-      &:hover, &:focus {
-        background-color: rgb(230, 230, 230);
+      &:hover,
+      &:focus {
+        background-color: rgba(253, 238, 237, 1);
+        color: rgba(226, 20, 12, 1);
+        font-weight: 500 !important;
       }
     }
 
     &--now {
-      @bgcolor: lighten(rgb(220, 220, 0), 30%);
+      @bgcolor: rgba(243, 244, 246, 1);
       background: @bgcolor;
-
+      font-weight: 500 !important;
+      color: rgba(55, 65, 81, 1);
       &:enabled {
-        &:hover, &:focus {
-          background: lighten(@bgcolor, 10%);
+        &:hover,
+        &:focus {
+          background-color: rgba(253, 238, 237, 1);
+          color: rgba(226, 20, 12, 1);
         }
       }
     }
 
-    &--hasActive {
-      @bgcolor: lighten(rgb(0, 110, 220), 30%);
-      background: @bgcolor;
+    // &--hasActive {
+    //   @bgcolor: rgba(246, 90, 84, 1);
+    //   background: @bgcolor !important;
 
-      &:enabled {
-        &:hover, &:focus {
-          background: lighten(@bgcolor, 10%);
-        }
-      }
-    }
+    //   &:enabled {
+    //     &:hover, &:focus {
+    //       background: lighten(@bgcolor, 100%);
+    //     }
+    //   }
+    // }
 
     &--active {
-      @bgcolor: rgb(0, 110, 220);
-      background: @bgcolor;
-      color: white;
-
+      @bgcolor: rgba(246, 90, 84, 1);
+      background: @bgcolor !important;
+      color: white !important;
+      font-weight: 500;
       &:enabled {
-        &:hover, &:focus {
-          background: lighten(@bgcolor, 10%);
+        &:hover {
+          background-color: rgba(253, 238, 237, 1) !important;
+          color: rgba(226, 20, 12, 1) !important;
         }
       }
     }
@@ -160,5 +209,12 @@
         background-color: rgb(230, 230, 230);
       }
     }
+  }
+
+  &__navigation__label {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
