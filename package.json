@@ -1,6 +1,6 @@
 {
-  "name": "react-calendar",
-  "version": "3.6.0",
+  "name": "@fall-out/react-calendar",
+  "version": "1.0.0",
   "description": "Ultimate calendar for your React app.",
   "main": "dist/umd/index.js",
   "module": "dist/esm/index.js",
@@ -30,10 +30,13 @@
     "react"
   ],
   "author": {
-    "name": "Wojciech Maj",
-    "email": "kontakt@wojtekmaj.pl"
+    "name": "Mohamed Abdulla",
+    "email": "mode.4123@gmail.com"
   },
   "contributors": [
+    {
+      "name": "Wojciech Maj"
+    },
     {
       "name": "Alberto Carreras"
     },
@@ -100,7 +103,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/wojtekmaj/react-calendar.git"
+    "url": "https://github.com/FaII0ut/react-calendar"
   },
   "funding": "https://github.com/wojtekmaj/react-calendar?sponsor=1",
   "packageManager": "yarn@3.1.0"
